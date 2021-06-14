@@ -1,18 +1,19 @@
 package com.medium.junewookang.core.order;
 
 import com.medium.junewookang.core.discount.DiscountPolicy;
-import com.medium.junewookang.core.discount.FixDiscountPolicy;
-import com.medium.junewookang.core.discount.RateDiscountPolicy;
 import com.medium.junewookang.core.member.Member;
 import com.medium.junewookang.core.member.MemberRepository;
-import com.medium.junewookang.core.member.MemoryMemberRepository;
 
 public class OrderServiceImpl implements OrderService {
-    private final MemberRepository memberRepository = new MemoryMemberRepository();
-//    private final DiscountPolicy discountPolicy = new FixDiscountPolicy(); // SRP가 잘 지켜진 사례. 하지만 OCP와 DIP는 위반한다고 한다.
-    private final DiscountPolicy discountPolicy = new RateDiscountPolicy(); // 갈아 끼우기
-    // private DiscountPolicy discountPolicy; // 이렇게 해야 DIP와 OCP를 잘 지킨다. 하지만 nullpointerexception 나겠지?
-    // 해결방안 : 누군가가 DiscountPolicy의 구현 객체를 주입해줘야 함.
+
+    // 인터페이스에만 의존하는, 구현체를 전혀 모르는 상태. DIP를 잘 지킨다고 볼 수 있음. 어떤 policy가 들어올지 알 바냐~~ 상태.
+    private final MemberRepository memberRepository;
+    private final DiscountPolicy discountPolicy;
+
+    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+        this.memberRepository = memberRepository;
+        this.discountPolicy = discountPolicy;
+    }
 
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {
