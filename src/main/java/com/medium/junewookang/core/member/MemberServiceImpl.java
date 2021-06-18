@@ -1,9 +1,8 @@
 package com.medium.junewookang.core.member;
 
-public class MemberServiceImpl implements MemberService{
+public class MemberServiceImpl implements MemberService{ // 서비스와 리포지토리를 이어주는 클래스. 어떤 서비스에서 어떤 리포지토리 함수를 실행해라~
 
-    // 의존관계는 난 몰라. 그냥 실행만 할거야!
-    private final MemberRepository memberRepository;
+    private final MemberRepository memberRepository; // 리포지토리가 뭐가 들어오든 신경쓰지 않음. 뭐랄까.. 되게 잘 추상화된 느낌이다.
 
     public MemberServiceImpl(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
