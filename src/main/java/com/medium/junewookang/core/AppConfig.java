@@ -9,24 +9,28 @@ import com.medium.junewookang.core.member.MemberServiceImpl;
 import com.medium.junewookang.core.member.MemoryMemberRepository;
 import com.medium.junewookang.core.order.OrderService;
 import com.medium.junewookang.core.order.OrderServiceImpl;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
+@Configuration
 public class AppConfig {
-    // 어떤 정책을 반영할건지는 여기서 결정함.
-    // 이걸 memberService, orderService에 대한 DI라고 함. 의존관계 주입 혹은 의존성 주입.
-    // 할인정책이 변경되어도, 구성영역(여기)만 교체하지 사용영역은 전혀 손댈 필요 없음.
 
+    @Bean
     public MemberService memberService() {
         return new MemberServiceImpl(memberRepository());
     } // 서비스에 리포지토리 주입
 
-    private MemberRepository memberRepository(){
+    @Bean
+    public MemberRepository memberRepository(){
         return new MemoryMemberRepository();
     } // jdbc, jpa, memory 등등에서 memory 채택 및 주입
 
+    @Bean
     public OrderService orderService() {
-        return new OrderServiceImpl(new MemoryMemberRepository(), discountPolicy());
+        return new OrderServiceImpl(memberRepository(), discountPolicy());
     } // 서비스에 리포지토리와 할인정책 주입
 
+    @Bean
     public DiscountPolicy discountPolicy(){
 //        return new FixDiscountPolicy();
         return new RateDiscountPolicy();
