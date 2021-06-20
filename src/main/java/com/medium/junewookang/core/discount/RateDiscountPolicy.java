@@ -2,7 +2,9 @@ package com.medium.junewookang.core.discount;
 
 import com.medium.junewookang.core.member.Grade;
 import com.medium.junewookang.core.member.Member;
+import org.springframework.stereotype.Component;
 
+@Component
 public class RateDiscountPolicy implements DiscountPolicy {
     private int discountPercent = 10;
 

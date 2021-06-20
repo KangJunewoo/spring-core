@@ -12,6 +12,7 @@ import com.medium.junewookang.core.order.OrderServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+// 기존의 순수한 AppConfig 파일. 컴포넌트 스캔 없이 직접 빈으로 등록함.
 @Configuration
 public class AppConfig {
 
