@@ -4,6 +4,10 @@ public class MemberServiceImpl implements MemberService{ // 서비스와 리포�
 
     private final MemberRepository memberRepository; // 리포지토리가 뭐가 들어오든 신경쓰지 않음. 뭐랄까.. 되게 잘 추상화된 느낌이다.
 
+    public MemberRepository getMemberRepository(){
+        return memberRepository;
+    }
+
     public MemberServiceImpl(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
