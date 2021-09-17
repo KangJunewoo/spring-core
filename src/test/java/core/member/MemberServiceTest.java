@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class MemberServiceTest {
+    // DIP 위반!!
     MemberService memberService = new MemberServiceImpl();
 
     @Test
