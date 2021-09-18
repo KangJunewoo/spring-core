@@ -56,3 +56,8 @@
 - 일단은 1000원 고정할인이지만, 정률할인 혹은 할인X로 바뀔수도 있음.
 
 초반엔 스프링 하나도 안 쓰고 순수 자바로 갈 것.
+
+## 어떻게 SOLID가 적용되었는가?
+- SRP : 구현 객체를 생성하고 연결하는 책임은 AppConfig가 담당하도록 넘겼고 실행하는 책임만 담당함.
+- DIP : 주석 길게 달았던 부분. ServiceImpl에서 FixDiscountPolicy가 이젠 나오지 않는다.
+- OCP : AppConfig만 바꾸면 설정이 변함. ServiceImpl 바꿀 필요 없음. 

@@ -7,7 +7,6 @@ import core.member.MemberRepository;
 import core.member.MemoryMemberRepository;
 
 public class OrderServiceImpl implements OrderService {
-    private final MemberRepository memberRepository = new MemoryMemberRepository();
 
     // 와리가리 가능.(Fix vs Rate)
     /*
@@ -23,8 +22,17 @@ public class OrderServiceImpl implements OrderService {
     private DiscountPolicy discountPolicy;
     이렇게 선언하면 되겠지 ㅇㅇ... 근데 당연히 널포인터익셉션 뜨겠지.
     누군가가 discountpolicy에 몰래 구체적인 정보를 주입해줘야함.
+
+    그래서 아래와 같이 수정해줄 수 있음.
      */
-    private final DiscountPolicy discountPolicy = new FixDiscountPolicy();
+
+    private final MemberRepository memberRepository;
+    private final DiscountPolicy discountPolicy;
+
+    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+        this.memberRepository = memberRepository;
+        this.discountPolicy = discountPolicy;
+    }
 
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {

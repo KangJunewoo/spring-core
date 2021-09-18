@@ -4,7 +4,6 @@ plugins {
 	id 'java'
 }
 
-group = 'com.medium.junewookang'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
