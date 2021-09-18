@@ -61,3 +61,14 @@
 - SRP : 구현 객체를 생성하고 연결하는 책임은 AppConfig가 담당하도록 넘겼고 실행하는 책임만 담당함.
 - DIP : 주석 길게 달았던 부분. ServiceImpl에서 FixDiscountPolicy가 이젠 나오지 않는다.
 - OCP : AppConfig만 바꾸면 설정이 변함. ServiceImpl 바꿀 필요 없음. 
+
+## 스프링
+- ApplicationContext(이하 ac)를 스프링 컨테이너라고 함.
+- 기존엔 AppConfig를 사용해 직접 객체생섣 + DI를 했지만, 이젠 그럴 필요가 없음.
+- `@Configuration`이 붙은 클래스를 설정정보로 사용하고, 그 안에 `@Bean`이 붙어있는 것을 모두 등록한다.
+- 이젠 AppConfig를 직접 호출할 필요 없이, `ac.getBean()`으로 모두 가져올 수 있다.
+- 근데 기존 코드가 더 심플한거 아닌가? 무슨 장점이 있지? => 어마어마한 장점이 있음.
+
+### 스프링 컨테이너 생성
+- 정확히 말하면 스프링 컨테이너는 BeanFactory, ApplicationContext로 구분되나 대부분 ApplicationContext를 의미함.
+- 
